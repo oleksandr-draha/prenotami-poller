@@ -2,7 +2,7 @@
 name = "prenotami-poller"
 version = "0.1.0"
 description = ""
-authors = ["Oleksandr Draha]
+authors = ["Oleksandr Draha"]
 
 [tool.poetry.dependencies]
 python = "^3.9"

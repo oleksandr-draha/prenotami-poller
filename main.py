@@ -1,12 +1,13 @@
 from selenium import webdriver
+from selenium.common import NoAlertPresentException
 from selenium.webdriver.common.by import By
 from selenium.webdriver.common.desired_capabilities import DesiredCapabilities
 from webdrivermanager.chrome import ChromeDriverManager
 
 
 URL = "https://prenotami.esteri.it/"
-LOGIN = ""
-PASSWORD = ""
+LOGIN = "cappajet@gmail.com"
+PASSWORD = "Yo89kaT7"
 SERVICES_URL = "https://prenotami.esteri.it/Services"
 BOOK_NUMBER = 4
 CHECK_TIMEOUT = 2
@@ -55,9 +56,16 @@ def check_availability():
         return True
 
 
+def wait_for_alert():
+    try:
+        driver.switch_to.alert.accept()
+        driver.switch_to.window(0)
+        return True
+    except NoAlertPresentException:
+        return False
 # Constantly polling for dates available
 while not check_availability():
     driver.get(service_link)
 
-driver.find_element(OK_POPUP_LOCATOR)
-
+while not wait_for_alert():
+    pass
